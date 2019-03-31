@@ -17,6 +17,6 @@ Route::resource('/product', 'ProductController')->only([
     'index', 'show', 'store', 'destroy'
 ]);
 Route::resource('/order', 'OrderController')->only([
-    'index', 'show', 'store', 'destroy'
+    'index', 'store'
 ]);
 Route::get('/product-types/{id}/orders', 'ProductTypeController@orders');

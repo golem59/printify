@@ -84,29 +84,4 @@ class OrderController extends Controller
         }
         return response()->json(['total_price' => $sum]);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
-     */
-    public function destroy(int $id)
-    {
-        $order = Order::query()->findOrFail($id);
-        $order->delete();
-        return response(null, 204);
-    }
 }

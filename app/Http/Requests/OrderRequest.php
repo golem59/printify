@@ -24,18 +24,18 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'products' => 'required|array',
+            'products' => 'required',
             'country_code' => 'required|string'
         ];
 
-        switch ($this->getMethod())
+
+        foreach($this->request->get('products') as $key => $val)
         {
-            case 'POST':
-                return $rules;
-            case 'DELETE':
-                return [
-                    'order_id' => 'required|integer|exists:orders,id'
-                ];
+            $rules['products.'.$key.'.id'] = 'required|integer|exists:products,id';
+            $rules['products.'.$key.'.quantity'] = 'required|integer';
         }
+
+
+        return $rules;
     }
 }
