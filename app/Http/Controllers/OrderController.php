@@ -33,8 +33,17 @@ class OrderController extends Controller
     {
         $countryCode = $request->get('country_code');
         $products = $request->get('products');
-
+        if(!count($products)){
+            return response()->json(['error' => 'order is empty!']);
+        }
         $info = json_encode($products);
+
+        //for case when we have same products multiple times
+        $preparedProducts = [];
+        foreach ($products as $product){
+            $preparedProducts[$product['id']] =  $preparedProducts[$product['id']]??0;
+            $preparedProducts[$product['id']] += $product['quantity'];
+        }
 
         //limit number of calling by country
         $counter = Cache::get($countryCode, 0);
@@ -68,6 +77,11 @@ class OrderController extends Controller
             ->where('order_id',$order->id)
         ->sum(DB::raw('quantity * price'));//cutting edges with raw
 
+        if($sum<10){
+            $order->is_active = false;
+            $order->save();
+            return response()->json(['error' => 'total price is less than minimum, order was deactivated!']);
+        }
         return response()->json(['total_price' => $sum]);
     }
 

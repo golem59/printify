@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->text('info');
-            $table->text('country_code')->default(self::DEFAULT_COUNTRY);
+            $table->string('country_code')->default(self::DEFAULT_COUNTRY);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
