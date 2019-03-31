@@ -1,8 +1,14 @@
 #Getting started
 #DB setup
 Fill DB settings in .env file.
+#composer install
+```
+composer install
+```
 # run migrations 
-```php artisan migrate:refresh```
+```
+php artisan migrate:refresh
+```
 
 #API
 ## create product types
