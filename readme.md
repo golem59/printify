@@ -64,6 +64,10 @@ Quantity will be calculated as overall on this product id.
 
 Order will be created anyway - if price is less than threshold it would be deactivated.
 
+## What is the limit for order calling per second for country?
+
+3 times per second, using MAX_API_CALLING_BY_COUNTRY constant
+
 ## What about using middleware for throttle API requests based on country?
 
 I think this is an overkill for this simple API, also throttling for seconds instead of minutes looks pretty awkward 
