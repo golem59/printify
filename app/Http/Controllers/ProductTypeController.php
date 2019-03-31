@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\OrderItem;
 use App\ProductType;
-use App\Product;
 use App\Http\Requests\ProductTypeRequest;
 
 class ProductTypeController extends Controller
@@ -72,6 +71,11 @@ class ProductTypeController extends Controller
         }
     }
 
+    /**
+     * return all orders by product_type
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function orders($id)
     {
         $orders = OrderItem::query()

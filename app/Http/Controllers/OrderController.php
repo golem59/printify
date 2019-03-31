@@ -7,7 +7,6 @@ use App\OrderItem;
 use App\Http\Requests\OrderRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
